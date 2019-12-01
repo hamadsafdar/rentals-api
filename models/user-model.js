@@ -20,7 +20,8 @@ const userSchema = new Schema({
     city: { type: String, required: true },
     gender: { type: Boolean, required: true },
     dob: { type: Date, required: true },
-
+    //ref
+    posts: [{type: mongoose.Schema.Types.ObjectId, ref: 'Post'}],
     // optional attributes
 
     profession: { type: String, default: null },
