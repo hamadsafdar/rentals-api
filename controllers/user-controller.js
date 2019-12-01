@@ -1,5 +1,6 @@
 
 const User = require('../models/user-model');
+const mongoose = require('mongoose');
 
 
 module.exports.user_sign_in = (req, res, next) => {
@@ -13,6 +14,7 @@ module.exports.user_sign_in = (req, res, next) => {
                 });
             } else {
                 const user = new User({
+                    _id: mongoose.Types.ObjectId(),
                     name: req.body.name,
                     email: req.body.email,
                     password: req.body.password,
