@@ -26,25 +26,27 @@ module.exports.user_sign_in = (req, res, next) => {
                     institue: req.body.institue,
                     interest: req.body.interest
                 });
+                
+                user
+                    .save()
+
+                    .then(createdUser => {
+                        res.status(201).json({
+                            message: `New User Created!`,
+                            createdUser: createdUser
+                        });
+                    })
+
+                    .catch(err => {
+                        console.log(err);
+                        res.status(500).json({
+                            message: `User not creaed!`
+                        });
+                    });
             }
         });
 
-    user
-        .save()
 
-        .then(createdUser => {
-            res.status(201).json({
-                message: `New User Created!`,
-                createdUser: createdUser
-            });
-        })
-
-        .catch(err => {
-            console.log(err);
-            res.status(500).json({
-                message: `User not creaed!`
-            });
-        });
 };
 
 module.exports.user_sign_up = (req, res, next) => {
@@ -53,19 +55,19 @@ module.exports.user_sign_up = (req, res, next) => {
         .exec()
         .then(user => {
             if (user.length = 1) {
-                if (user.password === req.body.password){
+                if (user.password === req.body.password) {
                     res.status(200).json({
                         message: `User Authenticated!`
                     });
                 } else {
-                    
+
                     res.status(401).json({
                         message: `User Authentication Failed!`
                     });
                     console.log(`Password not matched!`);
                 }
             } else {
-                
+
                 res.status(401).json({
                     message: `User Authentication failed!`
                 });
@@ -77,6 +79,6 @@ module.exports.user_sign_up = (req, res, next) => {
 
 module.exports.user_update = (req, res, next) => {
     let filter = req.body.email;
-    let updateOps = 
-    User.findOneAndUpdate({});
+    let updateOps =
+        User.findOneAndUpdate({});
 };
