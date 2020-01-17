@@ -4,6 +4,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const app = express();
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+const mongoose = require('mongoose');
 
 // Requiring routes
 
@@ -15,6 +18,17 @@ const postRoutes = require('./routes/post-routes');
 app.use(morgan('dev'));
 
 // Other middlewares
+app.use(session({
+    //options for session
+    secret: 'mango_people',
+    saveUninitialized: false,
+    resave: false,
+    store: new MongoStore({
+        //option for session store
+        connectionMongoose: mongoose.connection,
+        ttl: 7 * 24 * 60 * 60
+    })
+}));
 
 app.use(bodyParser.json());
 
