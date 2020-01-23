@@ -93,8 +93,25 @@ module.exports.user_sign_in = (req, res, next) => {
 
 };
 
+module.exports.user_sign_out = (req, res, next) => {
+
+    req.session.destroy(err => {
+        if (err) {
+            res.status(500).json({
+                message: `User logout failed! Display Fail message.`
+            });
+        } else {
+            res.status(201).json({
+                message: `User logged out! Redirect to login page.`
+            });
+        }
+
+    });
+
+}
+
 module.exports.user_update = (req, res, next) => {
     let filter = req.body.email;
-    let updateOps =
-        User.findOneAndUpdate({});
+    let updateOps = {};
+        User.findOneAndUpdate(updateOps);
 };

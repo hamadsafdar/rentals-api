@@ -15,6 +15,7 @@ mongoose.connect(url, {useNewUrlParser: true}, () => {
     console.log(`${dbname} connected!!`);
 })
     .catch(err => {
+        console.log(`Database connection error!`);
 
         console.log(err);
     });
