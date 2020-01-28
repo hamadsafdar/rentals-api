@@ -2,11 +2,12 @@
 
 const mongoose = require('mongoose');
 
-const Schema = mongoose.Schema;
 
-const userSchema = new Schema({
+
+const userSchema = new mongoose.Schema({
 
     // Required Attributes
+    _id: mongoose.Schema.Types.ObjectId,
     name: { type: String, required: true },
     email: {
         type: String,
