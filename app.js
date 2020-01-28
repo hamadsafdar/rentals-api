@@ -19,7 +19,7 @@ app.use(express.static('./public'));
 
 //connecting to db
 db.connect();
-console.log(`Status of DB is ${mongoose.connection.readyState}`);
+
 
 // Dev Dependency
 
