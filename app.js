@@ -33,7 +33,7 @@ app.use(session({
     resave: false,
     store: new MongoStore({
         //option for session store
-        connectionMongoose: mongoose.connection,
+        mongooseConnection: mongoose.connection,
         ttl: 7 * 24 * 60 * 60
     })
 }));

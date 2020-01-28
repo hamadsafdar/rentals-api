@@ -12,11 +12,17 @@ const mongodb = 'mongodb+srv://maddi:iiui@cluster0-h8is1.mongodb.net/test?retryW
 const url = `mongodb://${username}:${password}@${host}:${port}/${dbname}`;
 console.log(url);
 
-mongoose.connect(url, {useNewUrlParser: true});
-
-    
+mongoose.Promise = global.Promise;
 
 
-module.exports.connect = () => {
-    mongoose.connect(mongodb, {useNewUrlParser: true});
+
+
+
+
+module.exports.connect = async () => {
+    mongoose.connect(url, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useCreateIndex: true
+    });
 }
