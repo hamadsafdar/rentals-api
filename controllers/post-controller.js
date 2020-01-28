@@ -5,20 +5,18 @@ const Post = require('../models/post-model');
 const mongoose = require('mongoose');
 
 
-const newPost;
-const newHouse;
-const newAddress;
+
 
 module.exports.create_post = (req, res, next) => {
 
-    newPost = new Post({
+    const newPost = new Post({
         _id: mongoose.Types.ObjectId(),
         
     });
 
-    newHouse = new House();
+    const newHouse = new House();
 
-    newAddress = new Address();
+    const newAddress = new Address();
 
 
 

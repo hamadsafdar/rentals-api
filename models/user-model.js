@@ -21,14 +21,16 @@ const userSchema = new Schema({
     gender: { type: Boolean, required: true },
     dob: { type: Date, required: true },
     
-    //ref
-    posts: [{type: mongoose.Schema.Types.ObjectId, ref: 'Post'}],
+    
     // optional attributes
 
     profession: { type: String, default: null },
     intrest: [{ type: String, default: null }],
     institue: { type: String, default: null },
-    profileImageUrl: { type: String}
+    profileImageUrl: { type: String},
+
+    //ref to other collections
+    posts: [{type: mongoose.Schema.Types.ObjectId, ref: 'Post'}]
 
 
 });

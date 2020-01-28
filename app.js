@@ -7,6 +7,7 @@ const app = express();
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const mongoose = require('mongoose');
+const db = require('./database');
 
 // Requiring routes
 
@@ -15,6 +16,10 @@ const postRoutes = require('./routes/post-routes');
 
 
 app.use(express.static('./public'));
+
+//connecting to db
+db.connect();
+console.log(`Status of DB is ${mongoose.connection.readyState}`);
 
 // Dev Dependency
 

@@ -7,12 +7,20 @@ const path = require('path');
 //set storage engine
 
 const dest = '../public/uploads';
-const filename = 'Username';
+
 
 const storage = multer.diskStorage({
     destination: dest,
 
     filename: (req, file, callback) => {
-        callback(null, filename + '-' + Date.now() + path.extname(file.originalname));
+        callback(null, req.session.username + '-' + file.fieldname + path.extname(file.originalname));
     }
 });
+
+const upload = multer({
+    storage: storage
+});
+
+module.exports = {
+    upload
+}
