@@ -29,7 +29,7 @@ app.use(morgan('dev'));
 app.use(session({
     //options for session
     secret: 'mango_people',
-    saveUninitialized: false,
+    saveUninitialized: true,
     resave: false,
     store: new MongoStore({
         //option for session store

@@ -8,6 +8,7 @@ const postSchema = new mongoose.Schema({
     description: {type: String, required: true},
     createdOn: {type: Date, required: true, default: Date.now()},
     modifiedOn: {type: Date, default: Date.now()},
+    imagesUrl: [{type: String, required: true}],
 
     // ref
     address: {type: mongoose.Schema.Types.ObjectId, ref: 'Address', required: true},
