@@ -19,7 +19,7 @@ app.use(express.static('./public'));
 
 //connecting to db
 db.connect();
-// goof
+
 
 // Dev Dependency
 

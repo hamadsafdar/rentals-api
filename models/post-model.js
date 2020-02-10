@@ -12,7 +12,7 @@ const postSchema = new mongoose.Schema({
     // ref
     address: {type: mongoose.Schema.Types.ObjectId, ref: 'Address', required: true},
     house: {type: mongoose.Schema.Types.ObjectId, ref: 'House', required: true},
-    creator: {type: mongoose.Schema.Types.ObjectId, ref: 'Users', required: true},
+    createdBy: {type: mongoose.Schema.Types.ObjectId, ref: 'Users', required: true},
 
 
 });

@@ -26,7 +26,7 @@ const userSchema = new mongoose.Schema({
     // optional attributes
 
     profession: { type: String, default: null },
-    intrest: [{ type: String, default: null }],
+    intrests: [{ type: String, default: null }],
     institue: { type: String, default: null },
     profileImageUrl: { type: String},
 
