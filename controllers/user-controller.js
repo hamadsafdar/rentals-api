@@ -60,12 +60,13 @@ module.exports.user_sign_in = (req, res, next) => {
 
                 if (user.length = 1) {
                     if (user[0].password === req.body.password) {
+                        req.session.userId = user[0]._id;
                         res.status(200).json({
                             message: `User Authenticated! Redirect to user user profile.`
 
                         });
                         //adding session entry for user
-                        req.session.userId = user[0]._id;
+                        
                 
                     } else {
 
