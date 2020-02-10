@@ -51,36 +51,45 @@ module.exports.user_sign_up = (req, res, next) => {
 
 module.exports.user_sign_in = (req, res, next) => {
 
+    if (!req.session.userId) {
+        console.log(`logg`);
+        User.find({ email: req.body.email })
+            .exec()
+            .then(user => {
 
-    User.find({ email: req.body.email })
-        .exec()
-        .then(user => {
 
-            if (user.length = 1) {
-                if (user[0].password === req.body.password) {
-                    res.status(200).json({
-                        message: `User Authenticated! Redirect to user user profile.`
-                    });
-                    //adding session entry for user
-                    req.session.userId = user._id;
+                if (user.length = 1) {
+                    if (user[0].password === req.body.password) {
+                        res.status(200).json({
+                            message: `User Authenticated! Redirect to user user profile.`
 
+                        });
+                        //adding session entry for user
+                        req.session.userId = user[0]._id;
+                
+                    } else {
+
+                        //Password doesn't match
+
+                        res.status(401).json({
+                            message: `User Authentication Failed! Redirect to Login page.`
+                        });
+                        console.log(`Password not matched!`);
+                    }
                 } else {
 
-                    //Password doesn't match
-
                     res.status(401).json({
-                        message: `User Authentication Failed! Redirect to Login page.`
+                        message: `User Authentication failed! Redirect to Login page.`
                     });
-                    console.log(`Password not matched!`);
+                    console.log(`User Not Found!`);
                 }
-            } else {
-
-                res.status(401).json({
-                    message: `User Authentication failed! Redirect to Login page.`
-                });
-                console.log(`User Not Found!`);
-            }
+            });
+    } else {
+        res.status(200).json({
+            message: `User Already logged in`
         });
+    }
+
 };
 
 module.exports.user_sign_out = (req, res, next) => {
