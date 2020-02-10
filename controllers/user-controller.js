@@ -51,46 +51,36 @@ module.exports.user_sign_up = (req, res, next) => {
 
 module.exports.user_sign_in = (req, res, next) => {
 
-    if (req.session) {
 
-        res.status().json({
+    User.find({ email: req.body.email })
+        .exec()
+        .then(user => {
 
-        });
+            if (user.length = 1) {
+                if (user[0].password === req.body.password) {
+                    res.status(200).json({
+                        message: `User Authenticated! Redirect to user user profile.`
+                    });
+                    //adding session entry for user
+                    req.session.userId = user._id;
 
-
-    } else {
-        User.findOne({ email: req.body.email })
-            .exec()
-            .then(user => {
-                if (user.length = 1) {
-                    if (user.password === req.body.password) {
-                        res.status(200).json({
-                            message: `User Authenticated! Redirect to user user profile.`
-                        });
-                        //adding session entry for user
-                        req.session.user = user;
-
-                    } else {
-
-                        //Password doesn't match
-
-                        res.status(401).json({
-                            message: `User Authentication Failed! Redirect to Login page.`
-                        });
-                        console.log(`Password not matched!`);
-                    }
                 } else {
 
+                    //Password doesn't match
+
                     res.status(401).json({
-                        message: `User Authentication failed! Redirect to Login page.`
+                        message: `User Authentication Failed! Redirect to Login page.`
                     });
-                    console.log(`User Not Found!`);
+                    console.log(`Password not matched!`);
                 }
-            });
-    }
+            } else {
 
-
-
+                res.status(401).json({
+                    message: `User Authentication failed! Redirect to Login page.`
+                });
+                console.log(`User Not Found!`);
+            }
+        });
 };
 
 module.exports.user_sign_out = (req, res, next) => {
@@ -113,5 +103,5 @@ module.exports.user_sign_out = (req, res, next) => {
 module.exports.user_update = (req, res, next) => {
     let filter = req.body.email;
     let updateOps = {};
-        User.findOneAndUpdate(updateOps);
+    User.findOneAndUpdate(updateOps);
 };
