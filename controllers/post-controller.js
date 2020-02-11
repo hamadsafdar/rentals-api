@@ -55,6 +55,8 @@ module.exports.create_post = (req, res, next) => {
 
 module.exports.acquire_post = (req, res, next) => {
     Post.findById({ _id: req.body.id })
+        .populate('address')        //add selection query
+        .populate('house')          //add selection query
         //orFail executes when required post is not found.
         .orFail(() => {
             res.status(404).message({
@@ -79,8 +81,11 @@ module.exports.acquire_post = (req, res, next) => {
 
 module.exports.delete_post = (req, res, next) => {
 
-
-
+    Post.findByIdAndDelete({ _id: req.body.id })
+        .orFail()
+        .then()
+        .catch();
+    //Delete other ref in the post also
 };
 
 module.exports.edit_post = (req, res, next) => {
