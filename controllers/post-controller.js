@@ -9,7 +9,7 @@ const mongoose = require('mongoose');
 
 module.exports.create_post = (req, res, next) => {
 
-    const newPost = new Post({
+    let newPost = new Post({
         _id: mongoose.Types.ObjectId(),
         title: req.body.title,
         description: req.body.description,
@@ -17,7 +17,7 @@ module.exports.create_post = (req, res, next) => {
     });
 
 
-    const newHouse = new House({
+    let newHouse = new House({
         _id: mongoose.Types.ObjectId(),
         type: req.body.type,
         floor: req.body.floor,
@@ -26,7 +26,7 @@ module.exports.create_post = (req, res, next) => {
         size: req.body.size,
         garage: req.bod.garage
     });
-    const newAddress = new Address({
+    let newAddress = new Address({
         _id: mongoose.Types.ObjectId(),
         houseNumber: req.body.houseNumber,
         building: req.body.building,
@@ -55,8 +55,36 @@ module.exports.create_post = (req, res, next) => {
 
 };
 
+
+/* 
+
+    TODO:
+    Acquire all posts
+    Acquire a specific post
+
+
+
+*/
+
+module.exports.acquire_all_posts = (req, res, next) => {
+
+    Post.find({})
+        .exec()
+        .then(posts => {
+            //TODO: Send rquested number of posts
+            posts.forEach(post = {
+
+            })
+        })
+        .catch();
+
+}
+
+
+
+
 module.exports.acquire_post = (req, res, next) => {
-    Post.findById({ _id: req.body.id })
+    Post.findById({ _id: req.params.id })
         .populate('address')        //add selection query
         .populate('house')          //add selection query
         //orFail executes when required post is not found.
@@ -95,5 +123,5 @@ module.exports.delete_post = async (req, res, next) => {
 };
 
 module.exports.edit_post = (req, res, next) => {
-        // TODO: Edit the post
+    // TODO: Edit the post
 };
