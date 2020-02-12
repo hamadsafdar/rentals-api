@@ -79,12 +79,18 @@ module.exports.acquire_post = (req, res, next) => {
 
 };
 
-module.exports.delete_post = (req, res, next) => {
+module.exports.delete_post = async (req, res, next) => {
 
-    Post.findByIdAndDelete({ _id: req.body.id })
-        .orFail()
-        .then()
-        .catch();
+    let post = await Post.findById({ _id: req.body.id }).exec();
+    let house = await House.findById({ _id: post.house }).exec();
+    let address = await Address.findById({ _id: house.address }).exec();
+
+    post.remove();
+    house.remove();
+    address.remove();
+
+
+
     //Delete other ref in the post also
 };
 
