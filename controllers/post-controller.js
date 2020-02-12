@@ -51,6 +51,8 @@ module.exports.create_post = (req, res, next) => {
     newPost.createdBy = req.session.userId;
     newPost.save().then().catch();
 
+    // TODO: Send Response to the client regarding creating post 
+
 };
 
 module.exports.acquire_post = (req, res, next) => {
@@ -71,7 +73,7 @@ module.exports.acquire_post = (req, res, next) => {
         })
         .catch(err => {
             res.status(500).message({
-                message: `something went wrong while finfing the post!`
+                message: `something went wrong while finding the post!`
             });
             console.log(err.message + " 123");
 
@@ -88,12 +90,10 @@ module.exports.delete_post = async (req, res, next) => {
     post.remove();
     house.remove();
     address.remove();
+    // TODO: Send Response to the client regarding deleting post 
 
-
-
-    //Delete other ref in the post also
 };
 
 module.exports.edit_post = (req, res, next) => {
-
+        // TODO: Edit the post
 };
