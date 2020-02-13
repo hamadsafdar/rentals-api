@@ -2,6 +2,7 @@
 const House = require('../models/house-model');
 const Address = require('../models/address-model');
 const Post = require('../models/post-model');
+const User = require('../models/user-model');
 const mongoose = require('mongoose');
 
 
@@ -51,6 +52,24 @@ module.exports.create_post = (req, res, next) => {
     newPost.createdBy = req.session.userId;
     newPost.save().then().catch();
 
+    // Saving post id to the user
+
+    User.findById({ _id: req.session.userId })
+        .exec()
+        .orFail()
+        .then(user => {
+            user.posts.push(newPost._id);
+            user.update();
+            res.status().json({
+                message:`Post created`,
+                post: newPost
+            });
+
+        })
+        .catch();
+
+
+
     // TODO: Send Response to the client regarding creating post 
 
 };
@@ -72,9 +91,10 @@ module.exports.acquire_all_posts = (req, res, next) => {
         .exec()
         .then(posts => {
             //TODO: Send rquested number of posts
-            posts.forEach(post = {
+            posts.forEach(post => {
 
             })
+
         })
         .catch();
 
