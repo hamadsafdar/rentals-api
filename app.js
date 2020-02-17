@@ -13,6 +13,7 @@ const db = require('./database');
 
 const userRoutes = require('./routes/user-routes');
 const postRoutes = require('./routes/post-routes');
+const blogRoutes = require('./routes/blog-routes');
 
 
 app.use(express.static('./public'));
@@ -39,11 +40,13 @@ app.use(session({
 }));
 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
 
 // Handling routes 
 
 app.use('/api/user', userRoutes);
 app.use('/api/post', postRoutes);
+app.use('/api/blog', blogRoutes);
 
 
 
