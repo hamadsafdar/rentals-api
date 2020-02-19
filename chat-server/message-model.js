@@ -8,4 +8,7 @@ const messageSchema = new mongoose.Schema({
     messageContent: { type: String, required: true },
     to: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     from: { type: mongoose.Schema.Types.ObjectId, ref: 'User'}
+    //TODO: Add Message automatic Expiry
 });
+
+module.exports = mongoose.model('Message', messageSchema);
