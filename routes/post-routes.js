@@ -2,8 +2,12 @@
 const express = require('express');
 const router = express.Router();
 const postController = require('../controllers/post-controller');
+const postSubroute = require('./subroute-post');        // For acquiring different types of posts
 
-router.get('/acquire', postController.acquire_post);
+
+// All routes for acquiring post will go to subroute-post
+
+router.use('/acquire', postSubroute);
 
 router.post('/create', postController.create_post);
 
