@@ -16,22 +16,23 @@ const userSchema = new mongoose.Schema({
         lowercase: true,
         match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
     },
-    password: { type: String, required: true, lowercase:true },
+    password: { type: String, required: true, lowercase: true },
     phoneNumber: { type: String, required: true, unique: true },
     city: { type: String, required: true },
     gender: { type: Boolean, required: true },
     dob: { type: Date, required: true },
-    
-    
+
+
     // optional attributes
 
     profession: { type: String, default: null },
     intrests: [{ type: String, default: null }],
     institue: { type: String, default: null },
-    profileImageUrl: { type: String},
+    profileImageUrl: { type: String },
 
     //ref to other collections
-    posts: [{type: mongoose.Schema.Types.ObjectId, ref: 'Post'}]
+    posts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Post' }],
+    blogs: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Blog' }]
 
 
 });

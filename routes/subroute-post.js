@@ -1,7 +1,7 @@
 // subroute to find posts of a specific user
 
 const express = require('express');
-const router = express.router();
+const router = express.Router();
 const postController = require('../controllers/post-controller');
 
 //Get all types of posts

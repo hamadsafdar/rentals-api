@@ -17,7 +17,19 @@ module.exports.create_blog = (req, res, next) => {
 
     });
 
-    User.findById({ _id: req.session.userId }).orFail().exec().then().catch();
+    User.findById({ _id: req.session.userId })
+        .orFail()
+        .exec()
+        .then(user => {
+
+            user.blogs.push(blog._id);
+            console.log(blog._id);
+            user.save()
+                .then()
+                .catch();
+
+        })
+        .catch();
 
 
 
