@@ -9,6 +9,8 @@ module.exports.initialize = (server) => {
 
     serverSocket.on('connection', (socket) => {
 
+        console.log('A new Connection!!');
+
         const msg = {
             messageFrom: '',
             messageTo: '',

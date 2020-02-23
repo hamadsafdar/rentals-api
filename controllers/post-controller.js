@@ -59,9 +59,9 @@ module.exports.create_post = (req, res, next) => {
         .orFail()
         .then(user => {
             user.posts.push(newPost._id);
-            user.update();
+            user.save().catch();
             res.status().json({
-                message:`Post created`,
+                message: `Post created`,
                 post: newPost
             });
 
@@ -99,8 +99,6 @@ module.exports.acquire_all_posts = (req, res, next) => {
         .catch();
 
 }
-
-
 
 
 module.exports.acquire_post = (req, res, next) => {
@@ -144,4 +142,31 @@ module.exports.delete_post = async (req, res, next) => {
 
 module.exports.edit_post = (req, res, next) => {
     // TODO: Edit the post
+};
+
+module.exports.get_renting_posts = (req, res, next) => {
+
+    Post.find({ postType: 'RENTING' })
+        .exec()
+        .orFail()
+        .then(posts => {
+            posts.forEach(post => {
+
+            });
+        })
+        .catch();
+
+};
+
+module.exports.get_sharing_posts = (req, res, next) => {
+    Post.find({ postType: 'SHARING' })
+        .exec()
+        .orFail()
+        .then(posts => {
+            posts.forEach(post => {
+
+            });
+        })
+        .catch();
+
 };

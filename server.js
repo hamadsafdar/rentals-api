@@ -7,11 +7,13 @@ const port = 3000;
 
 
 // Parameter of http.createServer() is the middleware that is going to handle
-//the requests
+//  the requests
 const server = http.createServer(app);
 
-socketInit.initialize(server);
 
+socketInit.initialize(server);
 server.listen(port, () => {
     console.log(`Server is listening on port ${port}..!!`);
 });
+
+

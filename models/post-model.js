@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const postSchema = new mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     title: { type: String, required: true },
+    postType: { type: String, required: true },  // Room Sharing post or Room Renting
     description: { type: String, required: true },
     createdOn: { type: Date, required: true, default: Date.now },
     modifiedOn: { type: Date, default: Date.now },
