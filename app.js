@@ -14,6 +14,7 @@ const db = require('./database');
 const userRoutes = require('./routes/user-routes');
 const postRoutes = require('./routes/post-routes');
 const blogRoutes = require('./routes/blog-routes');
+const forumRoutes = require('./routes/discussion-routes');
 
 
 app.use(express.static('./public'));
@@ -47,6 +48,7 @@ app.use(bodyParser.urlencoded({ extended: false}));
 app.use('/api/user', userRoutes);
 app.use('/api/post', postRoutes);
 app.use('/api/blog', blogRoutes);
+app.use('/api/forum', forumRoutes);
 
 
 
