@@ -74,13 +74,48 @@ module.exports.delete_comment = (req, res, next) => {
     Comment.deleteOne({ _id: req.params.commentId }).exec();
 };
 
+module.exports.get_all_topics = (req, res, next) => {
+
+    Topic.find({})
+        .exec()
+        .then(topics => {
+            res.status(200).json({
+                allTopics: topics
+            });
+        })
+        .catch(err => {
+            res.status(500).json({
+                message: 'Internal Server Error!!'
+            });
+        });
+
+};
+
+module.exports.get_topic_comments = (req, res, next) => {
+    Topic.findById({ _id: req.params.topicId })
+        .populate('comment')    // Add selection Query
+        .exec()
+        .then(topic => {
+
+            res.status(200).json({
+                populatedTopic: topic
+            });
+
+        })
+        .catch(err => {
+            res.status(500).json({
+                message: 'Internal Server Error!'
+            });
+        });
+};
+
 module.exports.edit_topic = (req, res, next) => {
 
     //TODO: Update a topic
 
 };
 
-module.exports.edit_comment = () => {
+module.exports.edit_comment = (req, res, next) => {
 
     //TODO: Update a comment
 
