@@ -9,13 +9,13 @@ router.get('/alltopics', forumController.get_all_topics);
 
 router.get('/topic/:topicId', forumController.get_topic_comments);
 
-router.post('/create/topic', forumController.create_discussion_topic);
+router.post('/topic', forumController.create_discussion_topic);
 
-router.post('/create/comment', forumController.create_comment);
+router.post('/comment', forumController.create_comment);
 
-router.delete('/delete/topic/:topicId', forumController.delete_topic);
+router.delete('/topic/:topicId', forumController.delete_topic);
 
-router.delete('/delete/comment/:commentId', forumController.delete_comment);
+router.delete('/comment/:commentId', forumController.delete_comment);
 
 
 
