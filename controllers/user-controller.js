@@ -24,7 +24,8 @@ module.exports.user_sign_up = (req, res, next) => {
                     dob: req.body.dob,
                     profession: req.body.profession,
                     institute: req.body.institute,
-                    interest: req.body.interest
+                    interest: req.body.interest,
+                    imageUrl: req.file.path
                 });
 
                 user

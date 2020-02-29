@@ -28,6 +28,7 @@ const userSchema = new mongoose.Schema({
     profession: { type: String, default: null },
     intrests: [{ type: String, default: null }],
     institue: { type: String, default: null },
+    imageUrl: { type: String, default: ''},
     profileImageUrl: { type: String },
 
     //ref to other collections

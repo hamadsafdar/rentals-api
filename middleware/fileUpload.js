@@ -2,25 +2,31 @@ const multer = require('multer');
 const path = require('path');
 
 
-
-
-//set storage engine
-
 const dest = '../public/uploads';
+
+const fileFilter = (req, file, callback) => {
+    // reject a file
+    if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+      callback(null, true);
+    } else {
+      callback(null, false);
+    }
+  };
 
 
 const storage = multer.diskStorage({
     destination: dest,
 
     filename: (req, file, callback) => {
-        callback(null, req.session.username + '-' + file.fieldname + path.extname(file.originalname));
+        callback(null, req.session.userId + '-' + file.fieldname + path.extname(file.originalname));
     }
 });
 
 const upload = multer({
-    storage: storage
+    storage: storage,
+    fileFilter: fileFilter
 });
 
-module.exports = {
-    upload
-}
+
+
+module.exports = upload;
