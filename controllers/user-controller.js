@@ -9,7 +9,7 @@ module.exports.user_sign_up = (req, res, next) => {
         .exec()
         .then(user => {
             if (user.length >= 1) {
-                return res.status().json({
+                return res.status(400).json({
                     message: "User already exists! Redirect to Signup page."
                 });
             } else {
