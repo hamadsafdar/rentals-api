@@ -18,13 +18,11 @@ module.exports.check_auth = (req, res, next) => {
 };
 
 module.exports.check_user_exists = (req, res, next) => {
-    console.log(req.body);
+ 
 
     User.find({ email: req.body.email })
         .exec()
         .then(user => {
-            console.log('1');
-            console.log(user);
 
             if (user.length >= 1) {
 

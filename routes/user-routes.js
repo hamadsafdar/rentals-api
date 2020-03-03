@@ -6,7 +6,7 @@ const userCheck = require('../middleware/check-user');
 const upload = require('../middleware/fileUpload');
 
 
-router.post('/signup', upload.single('avatar'), userController.user_sign_up);
+router.post('/signup', upload.single('avatar'), userCheck.check_user_exists, userController.user_sign_up);
 
 router.post('/signin', userController.user_sign_in);
 
