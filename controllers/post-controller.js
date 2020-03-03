@@ -10,11 +10,21 @@ const mongoose = require('mongoose');
 
 module.exports.create_post = (req, res, next) => {
 
+    let imagesUrl = new Array(9);
+    let files = req.files;
+
+    for (let i = 0; i < files.length; i++) {
+        imagesUrl[i] = files[i].path;
+    }
+    
+
+
+
     let newPost = new Post({
         _id: mongoose.Types.ObjectId(),
         title: req.body.title,
         description: req.body.description,
-        imagesUrl: req.body.imagesUrl
+        imagesUrl: imagesUrl
     });
 
 
@@ -124,6 +134,10 @@ module.exports.acquire_post = (req, res, next) => {
             console.log(err.message + " 123");
 
         });
+
+        const mapFunc = () => {
+
+        }
 
 };
 

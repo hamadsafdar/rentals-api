@@ -2,7 +2,8 @@ const multer = require('multer');
 const path = require('path');
 
 
-const dest = 'public/uploads';
+
+const dest = 'public/uploads/postphotos';
 
 const fileFilter = (req, file, callback) => {
   // reject a file
@@ -28,6 +29,7 @@ const upload = multer({
   storage: storage,
   fileFilter: fileFilter
 });
+
 
 
 
