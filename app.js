@@ -15,6 +15,7 @@ const userRoutes = require('./routes/user-routes');
 const postRoutes = require('./routes/post-routes');
 const blogRoutes = require('./routes/blog-routes');
 const forumRoutes = require('./routes/discussion-routes');
+const searchRoutes = require('./routes/search-routes');
 
 
 app.use(express.static('./public'));
@@ -31,8 +32,12 @@ app.use(morgan('dev'));
 app.use(session({
     //options for session
     secret: 'mango_people',
-    saveUninitialized: true,
+    saveUninitialized: false,
     resave: false,
+    cookie: {
+        maxAge: 7 * 24 * 60 * 60,
+        path: '/'
+    },
     store: new MongoStore({
         //option for session store
         mongooseConnection: mongoose.connection,
@@ -41,7 +46,7 @@ app.use(session({
 }));
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // Handling routes 
 
@@ -49,6 +54,7 @@ app.use('/api/user', userRoutes);
 app.use('/api/post', postRoutes);
 app.use('/api/blog', blogRoutes);
 app.use('/api/forum', forumRoutes);
+app.use('/api/search', searchRoutes);
 
 
 
