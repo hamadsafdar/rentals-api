@@ -36,7 +36,8 @@ app.use(session({
     resave: false,
     cookie: {
         maxAge: 7 * 24 * 60 * 60,
-        path: '/'
+        path: '/',
+        httpOnly: true
     },
     store: new MongoStore({
         //option for session store

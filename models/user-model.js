@@ -26,10 +26,10 @@ const userSchema = new mongoose.Schema({
     // optional attributes
 
     profession: { type: String, default: null },
-    intrests: [{ type: String, default: null }],
+    interests: [{ type: String, default: null }],
     institue: { type: String, default: null },
     imageUrl: { type: String, default: ''},
-    profileImageUrl: { type: String },
+    
 
     //ref to other collections
     posts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Post' }],
