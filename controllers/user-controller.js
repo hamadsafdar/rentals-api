@@ -53,8 +53,8 @@ module.exports.user_sign_up = (req, res, next) => {
 module.exports.user_sign_in = (req, res, next) => {
 
     if (!req.session.userId) {
-        console.log(`logg`);
         User.find({ email: req.body.email })
+            .select('-password -__v')
             .exec()
             .then(user => {
 
@@ -62,28 +62,25 @@ module.exports.user_sign_in = (req, res, next) => {
                 if (user.length = 1) {
                     if (user[0].password === req.body.password) {
                         req.session.userId = user[0]._id;
-                        res.status(200).json({
-                            message: `User Authenticated! Redirect to user user profile.`
-
+                        return res.status(200).json({
+                            message: `User Authenticated! Redirect to user user profile.`,
+                            user: user[0]
                         });
-                        //adding session entry for user
-                        
-                
+
                     } else {
 
-                        //Password doesn't match
 
-                        res.status(401).json({
+                        console.log(`Password not matched!`);
+                        return res.status(401).json({
                             message: `User Authentication Failed! Redirect to Login page.`
                         });
-                        console.log(`Password not matched!`);
                     }
                 } else {
-
-                    res.status(401).json({
+                    console.log(`User Not Found!`);
+                    return res.status(401).json({
                         message: `User Authentication failed! Redirect to Login page.`
                     });
-                    console.log(`User Not Found!`);
+
                 }
             });
     } else {

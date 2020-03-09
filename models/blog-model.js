@@ -9,7 +9,7 @@ const blogShcema = new mongoose.Schema({
     modifiedOn: { type: Date, default: Date.now },
 
     //ref
-    author: { type: mongoose.Schema.Types.ObjectId, required: true }
+    author: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'User' }
 
 
 });
