@@ -7,7 +7,7 @@ module.exports.check_auth = (req, res, next) => {
     if (req.session.userId) {
 
         res.status(201).json({
-            message: "User already logged in. Redirect to Homepage."
+            message: "User already logged in."
         });
 
     } else {
