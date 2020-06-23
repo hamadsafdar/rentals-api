@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema({
 	password: { type: String, required: true, lowercase: true },
 	phoneNumber: { type: String, required: true, unique: true },
 	city: { type: String, required: true },
-	gender: { type: Boolean, required: true },
+	gender: { type: String, default: null },
 	dob: { type: Date },
 
 	// optional attributes

@@ -6,7 +6,9 @@ const upload = require("../middleware/avatarUpload");
 
 router.post(
 	"/signup",
-	/*upload.single('avatar'), userCheck.check_user_exists,*/ userController.user_sign_up
+	// upload.single("avatar"),
+	// userCheck.check_user_exists,
+	userController.user_sign_up
 );
 
 router.post("/signin", userCheck.check_auth, userController.user_sign_in);
