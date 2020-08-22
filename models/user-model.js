@@ -1,6 +1,6 @@
 // This file provides the Model of User Schema
 
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
 	// Required Attributes
@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema({
 		required: true,
 		unique: true,
 		lowercase: true,
-		match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
+		match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
 	},
 	password: { type: String, required: true, lowercase: true },
 	phoneNumber: { type: String, required: true, unique: true },
@@ -24,11 +24,10 @@ const userSchema = new mongoose.Schema({
 	profession: { type: String, default: null },
 	interests: [{ type: String, default: null }],
 	institue: { type: String, default: null },
-	imageUrl: { type: String, default: "" },
+	imageUrl: { type: String, default: '' },
 
-	//ref to other collections
-	posts: [{ type: mongoose.Schema.Types.ObjectId, ref: "Post" }],
-	blogs: [{ type: mongoose.Schema.Types.ObjectId, ref: "Blog" }],
+	//ref to other collection
+	blogs: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Blog' }]
 });
 
-module.exports = mongoose.model("User", userSchema);
+module.exports = mongoose.model('User', userSchema);

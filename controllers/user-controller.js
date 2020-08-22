@@ -43,13 +43,15 @@ module.exports.user_sign_up = (req, res, next) => {
 		});
 };
 
-module.exports.user_sign_in = (req, res, next) => {
+module.exports.user_sign_in = (req, res) => {
+	console.log(req.body);
 	if (!req.session.userId) {
 		User.findOne({ email: req.body.email })
-			.select('-password -__v')
+			.select('-__v')
 			.exec()
 			.then((user) => {
 				if (user) {
+					console.log(user);
 					if (user.password === req.body.pass) {
 						req.session.userId = user._id;
 						return res.status(200).json({
@@ -57,14 +59,14 @@ module.exports.user_sign_in = (req, res, next) => {
 							user: user
 						});
 					} else {
-					
+						console.log('Password');
 						return res.status(401).json({
 							isAuthenticated: false,
 							message: 'INVALID_CREDS'
 						});
 					}
 				} else {
-					
+					console.log('user');
 					return res.status(401).json({
 						isAuthenticated: false,
 						message: 'INVALID_CREDS'
