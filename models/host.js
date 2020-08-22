@@ -1,8 +1,6 @@
-// This file provides the Model of User Schema
+const { Schema, model } = require('mongoose');
 
-const mongoose = require('mongoose');
-
-const guestSchema = new mongoose.Schema({
+const hostSchema = new Schema({
 	name: { type: String, required: true },
 	email: {
 		type: String,
@@ -13,10 +11,9 @@ const guestSchema = new mongoose.Schema({
 	},
 	password: { type: String, required: true, lowercase: true },
 	phoneNumber: { type: String, required: true, unique: true },
-	imageUrl: { type: String, default: '' },
-
-	//ref to other collection
-	blogs: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Blog' }]
+	city: { type: String, required: true },
+	cnic: { type: String, required: true, unique: true },
+	imageUrl: { type: String, default: '' }
 });
 
-module.exports = mongoose.model('Guest', guestSchema);
+module.exports = model('Host', hostSchema);
